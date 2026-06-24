@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+:root {
+  --background: #04040a;
+  --foreground: #f0f0ff;
+  --primary: #7c3aed;
+  --primary-glow: rgba(124, 58, 237, 0.4);
+  --accent: #06b6d4;
+  --accent-glow: rgba(6, 182, 212, 0.3);
+  --card-bg: rgba(15, 10, 35, 0.7);
+  --card-border: rgba(124, 58, 237, 0.2);
+  --glass-bg: rgba(20, 10, 50, 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Animated mesh gradient background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 80vw 60vh at 70% -20%, rgba(109, 40, 217, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 60vw 50vh at -10% 20%, rgba(79, 70, 229, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 50vw 40vh at 50% 100%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 40vw 30vh at 90% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+    #04040a;
+  pointer-events: none;
+}
+
+/* Animated grid lines */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.6);
+}
+
+/* Selection */
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: #fff;
+}
+
+/* Glow animations */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), 0 0 60px rgba(124, 58, 237, 0.05); }
+  50% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 80px rgba(124, 58, 237, 0.1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Glass card base */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, transparent 50%, rgba(6, 182, 212, 0.03) 100%);
+  pointer-events: none;
+}
+
+/* Glow button */
+.btn-glow {
+  position: relative;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4), 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover:not(:disabled) {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.6), 0 6px 20px rgba(0,0,0,0.4);
+  transform: translateY(-1px);
+}
+
+.btn-glow:active:not(:disabled) {
+  transform: translateY(0px);
+}
+
+/* Input glow on focus */
+.input-glow:focus {
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3), 0 0 15px rgba(124, 58, 237, 0.1);
+}
+
+/* Neon text */
+.text-neon-violet {
+  color: #a78bfa;
+  text-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
+}
+
+.text-neon-cyan {
+  color: #67e8f9;
+  text-shadow: 0 0 20px rgba(103, 232, 249, 0.4);
+}
+
+/* Badge glow */
+.badge-glow-green {
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.badge-glow-violet {
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+}
+
+/* Animate in */
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Gradient border trick */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.5), rgba(6,182,212,0.3), rgba(124,58,237,0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Spinner */
+.spinner {
+  animation: spin-slow 0.8s linear infinite;
+}
+
+/* Step indicator active dot */
+.step-active {
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.8);
+}
