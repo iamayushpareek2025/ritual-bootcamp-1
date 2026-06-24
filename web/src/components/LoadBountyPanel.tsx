@@ -86,9 +86,12 @@ export function LoadBountyPanel({
         )}
 
         {recentIds.length === 0 && (
-          <div className="text-center py-6">
-            <div className="text-3xl mb-2 opacity-30">🔍</div>
-            <p className="text-xs text-emerald-800/50">No bounties yet. Create one or enter an ID above.</p>
+          <div className="text-center py-8 px-4">
+            <div className="mx-auto w-14 h-14 rounded-2xl bg-emerald-500/8 border border-emerald-500/20 flex items-center justify-center text-2xl mb-4 shadow-[0_0_20px_rgba(16,185,129,0.08)]">
+              🔍
+            </div>
+            <p className="text-sm font-medium text-emerald-700/60">No bounties opened yet</p>
+            <p className="text-xs text-zinc-700 mt-1">Create a new bounty or enter an ID above to get started.</p>
           </div>
         )}
       </CardBody>

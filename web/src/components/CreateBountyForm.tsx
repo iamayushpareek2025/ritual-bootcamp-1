@@ -171,16 +171,21 @@ export function CreateBountyForm({ onCreated }: { onCreated?: (bountyId: bigint)
             </Field>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <Field label="Prize Amount (RITUAL)" hint="This gets locked in the contract when you create the bounty.">
-              <Input
-                type="number"
-                min="0"
-                step="any"
-                value={reward}
-                onChange={(e) => setReward(e.target.value)}
-                placeholder="1.0"
-              />
+          {/* Prize Amount — full width with icon */}
+          <div className="relative">
+            <Field label="Prize Amount (RITUAL)" hint="This amount gets locked in the contract and paid to the winner.">
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-base">💎</span>
+                <Input
+                  type="number"
+                  min="0"
+                  step="any"
+                  value={reward}
+                  onChange={(e) => setReward(e.target.value)}
+                  placeholder="e.g. 1.0"
+                  className="pl-9 font-mono"
+                />
+              </div>
             </Field>
           </div>
 
@@ -191,9 +196,13 @@ export function CreateBountyForm({ onCreated }: { onCreated?: (bountyId: bigint)
           <Button
             type="submit"
             disabled={!isConnected || !isContractConfigured || !!validation || tx.isBusy}
-            className="w-full"
+            className="w-full gap-2 py-3 text-base font-bold tracking-wide"
           >
-            {tx.isBusy ? "Creating bounty…" : "Post Bounty"}
+            {tx.isBusy ? (
+              <><span className="spinner inline-block h-4 w-4 rounded-full border-2 border-white border-t-transparent" /> Creating bounty…</>
+            ) : (
+              <>🚀 Post Bounty</>
+            )}
           </Button>
 
           {!isConnected && (
