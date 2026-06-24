@@ -116,7 +116,7 @@ export function RevealAnswer({
         subtitle="The submission deadline has passed. Reveal your answer so it becomes eligible for judging."
       />
       <CardBody>
-        <Notice tone="violet">
+        <Notice tone="green">
           Your answer was pre-filled from your browser storage. If this is a different
           browser, paste your answer and salt manually.
         </Notice>
@@ -144,9 +144,9 @@ export function RevealAnswer({
           </Field>
 
           {previewHash && (
-            <div className="rounded-lg bg-white/5 px-3 py-2 ring-1 ring-white/10">
-              <p className="mb-1 text-xs text-zinc-500">Computed commitment hash preview</p>
-              <p className="break-all font-mono text-xs text-zinc-300">{previewHash}</p>
+            <div className="rounded-lg bg-emerald-500/5 px-3 py-2 ring-1 ring-emerald-500/20 shadow-[0_0_10px_rgba(16,185,129,0.08)]">
+              <p className="mb-1 text-xs text-emerald-600/80">Computed commitment hash preview</p>
+              <p className="break-all font-mono text-xs text-emerald-300/80">{previewHash}</p>
             </div>
           )}
 

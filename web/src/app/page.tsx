@@ -31,40 +31,50 @@ export default function Home() {
   return (
     <div className="min-h-full">
       {/* Top Nav */}
-      <header className="sticky top-0 z-50 border-b border-violet-500/15 backdrop-blur-xl" style={{background: 'rgba(4,4,10,0.85)'}}>
+      <header
+        className="sticky top-0 z-50 border-b border-emerald-500/20 backdrop-blur-xl"
+        style={{ background: "rgba(1,10,4,0.88)" }}
+      >
+        {/* Neon bottom glow line */}
+        <div className="header-glow-line" />
+
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
           <div className="flex items-center gap-4">
             {/* Logo / Brand */}
-            <div className="flex items-center gap-2.5">
-              <div className="relative flex items-center justify-center w-9 h-9">
-                <div className="absolute inset-0 rounded-xl bg-emerald-500/20 blur-md"></div>
-                <div className="relative w-9 h-9 rounded-xl overflow-hidden border border-emerald-400/30 shadow-[0_0_12px_rgba(52,211,153,0.25)]">
+            <div className="flex items-center gap-3">
+              <div className="relative flex items-center justify-center w-10 h-10">
+                <div className="absolute inset-0 rounded-xl bg-emerald-500/25 blur-lg animate-pulse" />
+                <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-emerald-400/40 shadow-[0_0_18px_rgba(16,185,129,0.4)]">
                   <Image
                     src="/ritual-logo.jpg"
                     alt="Ritual Logo"
-                    width={36}
-                    height={36}
+                    width={40}
+                    height={40}
                     className="w-full h-full object-cover"
                     priority
                   />
                 </div>
               </div>
               <div>
-                <h1 className="text-sm font-bold leading-tight text-white" style={{fontFamily: "'Space Grotesk', sans-serif"}}>
+                <h1
+                  className="text-sm font-bold leading-tight text-white"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
                   AI Bounty Judge
                 </h1>
-                <p className="text-[10px] leading-tight text-emerald-400 font-medium tracking-wide uppercase">
+                <p className="text-[10px] leading-tight text-emerald-400 font-medium tracking-widest uppercase animate-neon-flicker">
                   on {ritualChain.name}
                 </p>
               </div>
             </div>
 
             {/* Chain pill */}
-            <div className="hidden sm:flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-medium bg-violet-500/10 border border-violet-500/20 text-violet-300">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></div>
+            <div className="hidden sm:flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-medium bg-emerald-500/10 border border-emerald-500/25 text-emerald-300">
+              <div className="dot-live" />
               Chain {ritualChain.id}
             </div>
           </div>
+
           <WalletConnect />
         </div>
       </header>
@@ -73,20 +83,27 @@ export default function Home() {
         {/* Hero Section */}
         <section className="mb-10 animate-fade-in-up">
           <div className="relative">
-            {/* Background glow */}
-            <div className="absolute -top-8 left-0 w-64 h-32 bg-violet-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            {/* Background glow orbs */}
+            <div className="absolute -top-10 -left-10 w-72 h-36 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none animate-float" />
+            <div className="absolute -top-4 right-0 w-48 h-24 bg-cyan-500/8 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium bg-violet-500/10 border border-violet-500/25 text-violet-300 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.8)]"></span>
+            {/* "Powered by" badge */}
+            <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)] animate-pulse" />
               Powered by Ritual AI
             </div>
 
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl" style={{fontFamily: "'Space Grotesk', sans-serif"}}>
+            <h2
+              className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
               Crowd-judged bounties,{" "}
-              <span className="text-neon-violet">settled by AI.</span>
+              <span className="text-neon-green">settled by AI.</span>
             </h2>
             <p className="mt-3 max-w-2xl text-sm text-zinc-400 leading-relaxed">
-              Submit answers, commit a hash before the deadline, reveal your answer after — and let Ritual AI rank all submissions fairly. The bounty owner finalizes the winner.
+              Submit answers, commit a hash before the deadline, reveal your
+              answer after — and let Ritual AI rank all submissions fairly. The
+              bounty owner finalizes the winner.
             </p>
 
             {/* Feature pills */}
@@ -98,7 +115,7 @@ export default function Home() {
               ].map((f) => (
                 <span
                   key={f.text}
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium bg-white/5 border border-white/10 text-zinc-300 hover:border-violet-500/30 hover:bg-violet-500/5 transition-all duration-200"
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium bg-emerald-500/8 border border-emerald-500/20 text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-500/15 hover:shadow-[0_0_12px_rgba(16,185,129,0.2)] transition-all duration-200"
                 >
                   <span>{f.icon}</span>
                   {f.text}
@@ -112,14 +129,24 @@ export default function Home() {
         <section className="mb-8">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { step: "01", label: "Create", desc: "Fund a bounty with a rubric", color: "violet" },
-              { step: "02", label: "Commit", desc: "Submit hashed answers", color: "indigo" },
-              { step: "03", label: "Reveal", desc: "Reveal after deadline", color: "cyan" },
-              { step: "04", label: "Win", desc: "AI judges, owner finalizes", color: "emerald" },
+              { step: "01", label: "Create", desc: "Fund a bounty with a rubric", color: "emerald" },
+              { step: "02", label: "Commit",  desc: "Submit hashed answers",      color: "teal"    },
+              { step: "03", label: "Reveal",  desc: "Reveal after deadline",      color: "cyan"    },
+              { step: "04", label: "Win",     desc: "AI judges, owner finalizes", color: "emerald" },
             ].map((s) => (
-              <div key={s.step} className="glass-card rounded-xl px-4 py-3 border border-white/5 hover:border-violet-500/20 transition-all duration-300 group">
-                <div className={`text-xs font-mono font-bold mb-1 text-${s.color}-500/70 group-hover:text-${s.color}-400 transition-colors`}>{s.step}</div>
-                <div className="text-sm font-semibold text-white mb-0.5" style={{fontFamily: "'Space Grotesk', sans-serif"}}>{s.label}</div>
+              <div
+                key={s.step}
+                className="glass-card rounded-xl px-4 py-3 border border-emerald-500/10 hover:border-emerald-400/30 hover:shadow-[0_0_20px_rgba(16,185,129,0.1)] transition-all duration-300 group"
+              >
+                <div className={`text-xs font-mono font-bold mb-1 text-${s.color}-500/60 group-hover:text-${s.color}-400 transition-colors`}>
+                  {s.step}
+                </div>
+                <div
+                  className="text-sm font-semibold text-white mb-0.5"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  {s.label}
+                </div>
                 <div className="text-[11px] text-zinc-500">{s.desc}</div>
               </div>
             ))}
@@ -133,7 +160,10 @@ export default function Home() {
               No contract address configured. Copy{" "}
               <code className="font-mono text-amber-200">.env.example</code> to{" "}
               <code className="font-mono text-amber-200">.env.local</code> and set{" "}
-              <code className="font-mono text-amber-200">NEXT_PUBLIC_CONTRACT_ADDRESS</code> to start.
+              <code className="font-mono text-amber-200">
+                NEXT_PUBLIC_CONTRACT_ADDRESS
+              </code>{" "}
+              to start.
             </Notice>
           </div>
         )}
@@ -141,39 +171,47 @@ export default function Home() {
         {/* Main Dashboard */}
         <section className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <CreateBountyForm onCreated={handleCreated} />
-          <LoadBountyPanel selectedId={selectedId} onSelect={setSelectedId} recentIds={ids} />
+          <LoadBountyPanel
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+            recentIds={ids}
+          />
         </section>
 
         {/* Selected Bounty Detail */}
         {selectedId !== null && (
           <section className="mt-6 animate-fade-in-up">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-px flex-1 bg-gradient-to-r from-violet-500/30 to-transparent"></div>
-              <span className="text-xs font-mono text-violet-400 px-3">Bounty #{selectedId.toString()}</span>
-              <div className="h-px flex-1 bg-gradient-to-l from-violet-500/30 to-transparent"></div>
+              <div className="h-px flex-1 bg-gradient-to-r from-emerald-500/40 to-transparent" />
+              <span className="text-xs font-mono text-emerald-400 px-3 text-neon-cyan">
+                Bounty #{selectedId.toString()}
+              </span>
+              <div className="h-px flex-1 bg-gradient-to-l from-emerald-500/40 to-transparent" />
             </div>
             <BountyView bountyId={selectedId} />
           </section>
         )}
 
         {/* Footer */}
-        <footer className="mt-12 border-t border-white/5 pt-5">
+        <footer className="mt-12 border-t border-emerald-500/10 pt-5">
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-600">
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60"></span>
+              <div className="dot-live" style={{ width: 6, height: 6 }} />
               {contractAddress ? (
                 <>
                   Contract{" "}
-                  <span className="font-mono text-zinc-500">{shortenAddress(contractAddress, 6)}</span>
+                  <span className="font-mono text-zinc-500">
+                    {shortenAddress(contractAddress, 6)}
+                  </span>
                 </>
               ) : (
                 "Workshop demo"
               )}
               <span className="text-zinc-700">·</span>
-              <span className="text-violet-500/60">{ritualChain.name}</span>
+              <span className="text-emerald-600/80">{ritualChain.name}</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <div className="relative w-6 h-6 rounded-full overflow-hidden border border-violet-500/30 shadow-[0_0_8px_rgba(139,92,246,0.3)]">
+              <div className="relative w-6 h-6 rounded-full overflow-hidden border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.35)]">
                 <Image
                   src="/ayush-pfp.jpg"
                   alt="Ayush"
@@ -182,7 +220,11 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <span className="text-zinc-500">Built by <span className="text-violet-400 font-medium">Ayush</span> · Ritual Chain Workshop</span>
+              <span className="text-zinc-500">
+                Built by{" "}
+                <span className="text-emerald-400 font-medium">Ayush</span> ·
+                Ritual Chain Workshop
+              </span>
             </div>
           </div>
         </footer>

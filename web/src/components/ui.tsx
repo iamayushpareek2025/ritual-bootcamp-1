@@ -13,9 +13,7 @@ export function Card({
   className?: string;
 }) {
   return (
-    <div
-      className={`glass-card rounded-2xl gradient-border ${className}`}
-    >
+    <div className={`glass-card rounded-2xl gradient-border ${className}`}>
       {children}
     </div>
   );
@@ -33,15 +31,18 @@ export function CardHeader({
   icon?: ReactNode;
 }) {
   return (
-    <div className="flex items-start justify-between gap-3 border-b border-violet-500/15 px-5 py-4">
+    <div className="flex items-start justify-between gap-3 border-b border-emerald-500/15 px-5 py-4">
       <div className="flex items-center gap-3 min-w-0">
         {icon && (
-          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center text-violet-400">
+          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.15)]">
             {icon}
           </div>
         )}
         <div className="min-w-0">
-          <h2 className="text-sm font-semibold tracking-wide text-violet-200" style={{fontFamily: "'Space Grotesk', sans-serif"}}>
+          <h2
+            className="text-sm font-semibold tracking-wide text-emerald-200"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
             {title}
           </h2>
           {subtitle ? (
@@ -71,11 +72,11 @@ type Tone = "green" | "amber" | "indigo" | "zinc" | "red" | "violet" | "cyan";
 const TONES: Record<Tone, string> = {
   green:  "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30 badge-glow-green",
   amber:  "bg-amber-500/15 text-amber-300 ring-amber-500/30",
-  indigo: "bg-indigo-500/15 text-indigo-300 ring-indigo-500/30",
+  indigo: "bg-emerald-500/10 text-emerald-300 ring-emerald-500/25 badge-glow-green",
   zinc:   "bg-zinc-500/15 text-zinc-300 ring-zinc-500/30",
   red:    "bg-red-500/15 text-red-300 ring-red-500/30",
-  violet: "bg-violet-500/15 text-violet-300 ring-violet-500/30 badge-glow-violet",
-  cyan:   "bg-cyan-500/15 text-cyan-300 ring-cyan-500/30",
+  violet: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30 badge-glow-green",
+  cyan:   "bg-teal-500/15 text-teal-300 ring-teal-500/30 badge-glow-cyan",
 };
 
 export function Badge({
@@ -110,9 +111,11 @@ export function Button({
     primary:
       "btn-glow text-white font-semibold disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none",
     secondary:
-      "bg-white/5 text-zinc-200 border border-white/10 hover:bg-white/10 hover:border-violet-500/30 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200",
-    ghost: "bg-transparent text-zinc-400 hover:text-zinc-200 hover:bg-white/5 transition-all duration-200",
-    danger: "bg-red-500/20 text-red-300 border border-red-500/30 hover:bg-red-500/30 transition-all duration-200 disabled:opacity-40",
+      "bg-emerald-500/8 text-emerald-200 border border-emerald-500/20 hover:bg-emerald-500/15 hover:border-emerald-400/40 hover:shadow-[0_0_12px_rgba(16,185,129,0.15)] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200",
+    ghost:
+      "bg-transparent text-zinc-400 hover:text-emerald-300 hover:bg-emerald-500/8 transition-all duration-200",
+    danger:
+      "bg-red-500/15 text-red-300 border border-red-500/25 hover:bg-red-500/25 hover:border-red-400/40 transition-all duration-200 disabled:opacity-40",
   };
   return (
     <button
@@ -137,17 +140,19 @@ export function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-medium text-zinc-400 uppercase tracking-wide">
+      <span className="mb-1.5 block text-xs font-medium text-emerald-600/80 uppercase tracking-wide">
         {label}
       </span>
       {children}
-      {hint ? <span className="mt-1.5 block text-[11px] text-zinc-600">{hint}</span> : null}
+      {hint ? (
+        <span className="mt-1.5 block text-[11px] text-zinc-600">{hint}</span>
+      ) : null}
     </label>
   );
 }
 
 const inputBase =
-  "input-glow w-full rounded-xl border border-white/8 bg-black/40 px-3 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-violet-500/50 focus:outline-none transition-all duration-200";
+  "input-glow w-full rounded-xl border border-emerald-500/15 bg-black/50 px-3 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:outline-none transition-all duration-200";
 
 export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...props} className={`${inputBase} ${props.className ?? ""}`} />;
@@ -167,19 +172,19 @@ export function Textarea(
 /* ---------------------------------------------------------- Tx status UI */
 
 const TX_LABEL: Record<TxState, string> = {
-  idle: "",
-  wallet: "Waiting for wallet…",
-  pending: "Confirming on-chain…",
+  idle:      "",
+  wallet:    "Waiting for wallet…",
+  pending:   "Confirming on-chain…",
   confirmed: "✓ Confirmed!",
-  failed: "Transaction failed",
+  failed:    "Transaction failed",
 };
 
 const TX_TONE: Record<TxState, Tone> = {
-  idle: "zinc",
-  wallet: "amber",
-  pending: "violet",
+  idle:      "zinc",
+  wallet:    "amber",
+  pending:   "violet",
   confirmed: "green",
-  failed: "red",
+  failed:    "red",
 };
 
 export function TxStatus({
@@ -205,7 +210,7 @@ export function TxStatus({
           href={`${explorerBase}/tx/${hash}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-violet-400 hover:text-violet-300 underline underline-offset-2 transition-colors"
+          className="text-emerald-400 hover:text-emerald-300 underline underline-offset-2 transition-colors"
         >
           View tx ↗
         </a>
@@ -238,8 +243,8 @@ export function Notice({
 
 export function Stat({ label, value }: { label: string; value: ReactNode }) {
   return (
-    <div className="rounded-xl bg-black/30 border border-white/5 px-3 py-2.5">
-      <div className="text-[10px] uppercase tracking-widest text-zinc-600 font-medium">
+    <div className="stat-neon rounded-xl bg-emerald-500/5 border border-emerald-500/12 px-3 py-2.5 hover:border-emerald-500/25 hover:bg-emerald-500/8 transition-all duration-200">
+      <div className="text-[10px] uppercase tracking-widest text-emerald-700 font-medium">
         {label}
       </div>
       <div className="mt-1 text-sm font-medium text-zinc-100 break-words">

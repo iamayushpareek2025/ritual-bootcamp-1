@@ -81,8 +81,8 @@ export function LoadBountyPanel({
                   }}
                   className={`rounded-lg px-2.5 py-1 font-mono text-xs ring-1 ring-inset transition-all duration-200 ${
                     selectedId?.toString() === id
-                      ? "bg-violet-500/20 text-violet-200 ring-violet-500/40 shadow-[0_0_10px_rgba(124,58,237,0.2)]"
-                      : "bg-black/30 text-zinc-400 ring-white/10 hover:bg-violet-500/10 hover:text-violet-300 hover:ring-violet-500/30"
+                      ? "bg-emerald-500/20 text-emerald-200 ring-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.25)]"
+                      : "bg-black/30 text-zinc-400 ring-white/10 hover:bg-emerald-500/10 hover:text-emerald-300 hover:ring-emerald-500/30"
                   }`}
                 >
                   #{id}

@@ -64,10 +64,10 @@ export function BountyView({ bountyId }: { bountyId: bigint }) {
     <div className="space-y-4">
       {/* Phase banner */}
       <div className={`rounded-xl px-4 py-2.5 text-sm font-medium flex items-center gap-2
-        ${status === "commit-open"    ? "bg-green-500/10 text-green-300 ring-1 ring-green-500/20" : ""}
-        ${status === "reveal-open"    ? "bg-violet-500/10 text-violet-300 ring-1 ring-violet-500/20" : ""}
+        ${status === "commit-open"    ? "bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/20" : ""}
+        ${status === "reveal-open"    ? "bg-teal-500/10 text-teal-300 ring-1 ring-teal-500/20" : ""}
         ${status === "judging-ready"  ? "bg-amber-500/10 text-amber-300 ring-1 ring-amber-500/20" : ""}
-        ${status === "judged"         ? "bg-indigo-500/10 text-indigo-300 ring-1 ring-indigo-500/20" : ""}
+        ${status === "judged"         ? "bg-emerald-500/10 text-emerald-200 ring-1 ring-emerald-500/20" : ""}
         ${status === "finalized"      ? "bg-zinc-500/10 text-zinc-300 ring-1 ring-zinc-500/20" : ""}
       `}>
         <span className="text-lg">
