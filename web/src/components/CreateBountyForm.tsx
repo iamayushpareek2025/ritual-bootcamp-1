@@ -159,8 +159,8 @@ export function CreateBountyForm({ onCreated }: { onCreated?: (bountyId: bigint)
           </Field>
 
           {/* Lifecycle note */}
-          <div className="rounded-lg bg-indigo-500/10 px-3 py-2 text-xs text-indigo-300 ring-1 ring-inset ring-indigo-500/20">
-            <strong>Commit-Reveal flow:</strong> Participants commit a hash before the submission
+          <div className="rounded-lg bg-emerald-500/8 px-3 py-2.5 text-xs text-emerald-300/90 ring-1 ring-inset ring-emerald-500/20 shadow-[0_0_12px_rgba(16,185,129,0.08)]">
+            <span className="font-semibold text-emerald-300">⛓️ Commit-Reveal flow:</span> Participants commit a hash before the submission
             deadline, then reveal their answer before the reveal deadline. Only revealed answers
             are judged — keeping submissions private until judging begins.
           </div>
