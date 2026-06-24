@@ -38,14 +38,14 @@ export function CommitmentsList({
           <div className="flex items-center gap-1.5">
             <Badge tone="zinc">{count} committed</Badge>
             {bounty.totalEligible > 0n && (
-              <Badge tone="indigo">{bounty.totalEligible.toString()} eligible</Badge>
+              <Badge tone="green">{bounty.totalEligible.toString()} eligible</Badge>
             )}
           </div>
         }
       />
       <CardBody className="space-y-3">
         {count === 0 ? (
-          <p className="text-sm text-zinc-500">No commitments yet.</p>
+          <p className="text-sm text-emerald-700/60 italic">No commitments yet.</p>
         ) : (
           indices.map((i) => (
             <CommitmentRow
@@ -95,23 +95,22 @@ function CommitmentRow({
   const answer     = data?.[4];
 
   const borderClass = isWinner
-    ? "border-emerald-500/40 bg-emerald-500/5"
+    ? "border-emerald-500/50 bg-emerald-500/8 shadow-[0_0_15px_rgba(16,185,129,0.12)]"
     : recommended
-    ? "border-indigo-500/40 bg-indigo-500/5"
-    : "border-white/10 bg-black/20";
+    ? "border-teal-500/40 bg-teal-500/5 shadow-[0_0_10px_rgba(20,184,166,0.08)]"
+    : "border-emerald-500/10 bg-black/25";
 
   return (
-    <div className={`rounded-xl border p-3 ${borderClass}`}>
+    <div className={`rounded-xl border p-3 transition-all duration-200 ${borderClass}`}>
       {/* Header row */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs text-zinc-500">#{index}</span>
-          <span className="font-mono text-sm text-zinc-300">
+          <span className="font-mono text-xs text-emerald-700/60">#{index}</span>
+          <span className="font-mono text-sm text-emerald-200/80">
             {submitter ? shortenAddress(submitter) : isLoading ? "loading…" : "—"}
           </span>
         </div>
         <div className="flex items-center gap-1.5 flex-wrap">
-          {/* Reveal status badges */}
           {revealed === true && eligible === true && (
             <Badge tone="green">Revealed ✓</Badge>
           )}
@@ -121,38 +120,37 @@ function CommitmentRow({
           {revealed === false && (
             <Badge tone="zinc">Not revealed</Badge>
           )}
-          {/* Score / winner badges */}
           {ranking && <Badge tone="zinc">score {ranking.score}</Badge>}
           {isWinner ? (
             <Badge tone="green">Winner 🏆</Badge>
           ) : recommended ? (
-            <Badge tone="indigo">AI pick</Badge>
+            <Badge tone="cyan">AI pick ✦</Badge>
           ) : null}
         </div>
       </div>
 
-      {/* Commitment hash — always visible */}
+      {/* Commitment hash */}
       {commitment && (
-        <p className="mt-2 break-all font-mono text-[10px] text-zinc-600" title="Commitment hash">
+        <p className="mt-2 break-all font-mono text-[10px] text-emerald-800/60" title="Commitment hash">
           {commitment}
         </p>
       )}
 
-      {/* Answer — only visible after judging */}
+      {/* Answer */}
       {showAnswer && answer ? (
-        <p className="mt-2 whitespace-pre-wrap break-words text-sm text-zinc-200">{answer}</p>
+        <p className="mt-2 whitespace-pre-wrap break-words text-sm text-emerald-100/85">{answer}</p>
       ) : showAnswer && eligible ? (
-        <p className="mt-2 text-xs text-zinc-500 italic">Answer not available.</p>
+        <p className="mt-2 text-xs text-emerald-700/60 italic">Answer not available.</p>
       ) : !showAnswer && (revealed || eligible) ? (
-        <p className="mt-2 text-xs text-zinc-600 italic">
+        <p className="mt-2 text-xs text-emerald-800/60 italic">
           🔒 Answer hidden until judging completes.
         </p>
       ) : null}
 
       {/* AI reasoning */}
       {ranking?.reason && (
-        <p className="mt-2 border-t border-white/5 pt-2 text-xs text-zinc-400">
-          <span className="text-zinc-500">AI: </span>
+        <p className="mt-2 border-t border-emerald-500/10 pt-2 text-xs text-emerald-400/70">
+          <span className="text-emerald-600/60">AI: </span>
           {ranking.reason}
         </p>
       )}

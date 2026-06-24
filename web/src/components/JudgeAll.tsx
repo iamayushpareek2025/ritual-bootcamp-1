@@ -98,25 +98,23 @@ export function JudgeAll({
   return (
     <Card>
       <CardHeader
-        title="Judge all submissions"
-        subtitle="Sends one Ritual LLM request ranking every submission."
+        title="Score All Answers"
+        subtitle="AI will read every answer and rank them based on your judging rules."
       />
       <CardBody className="space-y-3">
-        <Notice tone="indigo">AI review is advisory. The bounty owner finalizes the winner.</Notice>
+        <Notice tone="green">AI picks a recommended winner. You still decide who gets paid.</Notice>
 
         <RitualWalletPanel status={walletStatus} onDeposited={walletStatus.refetch} />
 
         <Button onClick={handleJudge} disabled={busy || !fundingReady} className="w-full">
           {gathering ? (
-            <>
-              <Spinner /> Gathering {count} submissions…
-            </>
+            <><Spinner /> Loading {count} answers…</>
           ) : tx.isBusy ? (
-            "Judging…"
+            "Scoring with AI…"
           ) : !fundingReady ? (
-            "Fund RitualWallet to judge"
+            "Fund your Ritual Wallet first"
           ) : (
-            `Judge eligible answers (${count})`
+            `Score All Answers (${count})`
           )}
         </Button>
         {gatherError && <Notice tone="red">{gatherError}</Notice>}

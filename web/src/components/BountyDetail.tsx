@@ -24,23 +24,23 @@ export function BountyDetail({
       <CardHeader
         title={
           <span className="flex items-center gap-2">
-            <span className="font-mono text-zinc-500">#{bountyId.toString()}</span>
-            <span className="normal-case text-base text-zinc-100">
+            <span className="font-mono text-emerald-600/70">#{bountyId.toString()}</span>
+            <span className="normal-case text-base text-white">
               {bounty.title || "Untitled"}
             </span>
           </span>
         }
         action={
           <div className="flex items-center gap-2 flex-wrap">
-            {isOwner && <Badge tone="indigo">You own this</Badge>}
+            {isOwner && <Badge tone="green">You own this</Badge>}
             <Badge tone={meta.tone}>{meta.label}</Badge>
           </div>
         }
       />
       <CardBody className="space-y-4">
         <div>
-          <div className="text-[11px] uppercase tracking-wide text-zinc-500">Rubric</div>
-          <p className="mt-1 whitespace-pre-wrap break-words text-sm text-zinc-200">
+          <div className="text-[11px] uppercase tracking-wide text-emerald-600/70 font-medium">Rubric</div>
+          <p className="mt-1 whitespace-pre-wrap break-words text-sm text-emerald-100/80">
             {bounty.rubric || "—"}
           </p>
         </div>
@@ -53,31 +53,31 @@ export function BountyDetail({
         </div>
 
         {/* Two-deadline display */}
-        <div className="rounded-lg bg-white/5 px-3 py-2 ring-1 ring-white/10 space-y-1.5 text-xs">
+        <div className="rounded-lg bg-emerald-500/5 px-3 py-2.5 ring-1 ring-emerald-500/15 space-y-1.5 text-xs border border-emerald-500/10">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-zinc-500">Submission deadline</span>
-            <span className="text-zinc-200">
+            <span className="text-emerald-600/80">Submission deadline</span>
+            <span className="text-emerald-200/90">
               {formatTimestamp(bounty.submissionDeadline)}
-              <span className="ml-1 text-zinc-500">({formatRelative(bounty.submissionDeadline)})</span>
+              <span className="ml-1 text-emerald-600/60">({formatRelative(bounty.submissionDeadline)})</span>
             </span>
           </div>
           <div className="flex items-center justify-between gap-2">
-            <span className="text-zinc-500">Reveal deadline</span>
-            <span className="text-zinc-200">
+            <span className="text-emerald-600/80">Reveal deadline</span>
+            <span className="text-emerald-200/90">
               {formatTimestamp(bounty.revealDeadline)}
-              <span className="ml-1 text-zinc-500">({formatRelative(bounty.revealDeadline)})</span>
+              <span className="ml-1 text-emerald-600/60">({formatRelative(bounty.revealDeadline)})</span>
             </span>
           </div>
-          <div className="flex items-center justify-between gap-2 pt-1 border-t border-white/5">
-            <span className="text-zinc-500">Owner</span>
-            <span className="font-mono text-zinc-300">{shortenAddress(bounty.owner)}</span>
+          <div className="flex items-center justify-between gap-2 pt-1 border-t border-emerald-500/10">
+            <span className="text-emerald-600/80">Owner</span>
+            <span className="font-mono text-emerald-300/80">{shortenAddress(bounty.owner)}</span>
           </div>
         </div>
 
         {bounty.finalized && (
-          <div className="rounded-xl bg-emerald-500/10 px-3 py-2 text-sm text-emerald-200 ring-1 ring-inset ring-emerald-500/30">
-            Finalized — winner is submission{" "}
-            <span className="font-mono font-semibold">#{bounty.winnerIndex.toString()}</span>.
+          <div className="rounded-xl bg-emerald-500/10 px-3 py-2 text-sm text-emerald-200 ring-1 ring-inset ring-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+            🏆 Finalized — winner is submission{" "}
+            <span className="font-mono font-semibold text-emerald-300">#{bounty.winnerIndex.toString()}</span>.
           </div>
         )}
       </CardBody>

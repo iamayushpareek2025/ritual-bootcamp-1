@@ -71,30 +71,23 @@ export function FinalizeWinner({
   return (
     <Card>
       <CardHeader
-        title="Finalize winner"
-        subtitle="Pays the reward to the chosen submission. Only one winner."
+        title="Pay the Winner"
+        subtitle="Send the prize to the best answer. This cannot be undone."
       />
       <CardBody className="space-y-3">
         <Notice tone="zinc">
-          Only one winner receives the bounty reward (
-          {formatReward(bounty.reward)}).
+          Only one person gets the prize ({formatReward(bounty.reward)}). Choose wisely.
         </Notice>
 
         <Field
-          label="Winner index"
+          label="Winning Answer Number"
           hint={
             recommended !== undefined
-              ? `AI recommends #${recommended}. You decide the final winner.`
-              : `Choose a submission index (0–${Math.max(count - 1, 0)}).`
+              ? `AI suggests answer #${recommended}. Final choice is yours.`
+              : `Pick a number between 0 and ${Math.max(count - 1, 0)}.`
           }
         >
-          <Input
-            type="number"
-            min={0}
-            max={Math.max(count - 1, 0)}
-            value={winnerIndex}
-            onChange={(e) => setOverride(e.target.value)}
-          />
+          <Input type="number" min={0} max={Math.max(count - 1, 0)} value={winnerIndex} onChange={(e) => setOverride(e.target.value)} />
         </Field>
 
         {winnerIndex !== "" && !valid && (
@@ -103,12 +96,8 @@ export function FinalizeWinner({
           </p>
         )}
 
-        <Button
-          onClick={handleFinalize}
-          disabled={!valid || tx.isBusy}
-          className="w-full"
-        >
-          {tx.isBusy ? "Finalizing…" : "Finalize winner"}
+        <Button onClick={handleFinalize} disabled={!valid || tx.isBusy} className="w-full">
+          {tx.isBusy ? "Sending prize…" : "Pay Winner Now"}
         </Button>
 
         <TxStatus

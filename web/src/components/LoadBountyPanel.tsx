@@ -34,8 +34,8 @@ export function LoadBountyPanel({
   return (
     <Card>
       <CardHeader
-        title="Load a Bounty"
-        subtitle="Open any bounty by its numeric id."
+        title="View a Bounty"
+        subtitle="Enter a bounty ID to see its details and take action."
         icon={
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/>
@@ -53,23 +53,16 @@ export function LoadBountyPanel({
         >
           <div className="flex-1">
             <Field label="Bounty ID">
-              <Input
-                inputMode="numeric"
-                value={value}
-                onChange={(e) => setOverride(e.target.value)}
-                placeholder="Enter bounty ID…"
-              />
+              <Input inputMode="numeric" value={value} onChange={(e) => setOverride(e.target.value)} placeholder="Enter ID number…" />
             </Field>
           </div>
-          <Button type="submit" className="mb-0">
-            Load
-          </Button>
+          <Button type="submit" className="mb-0">Open</Button>
         </form>
 
         {recentIds.length > 0 && (
           <div>
-            <div className="mb-2 text-[10px] uppercase tracking-widest text-zinc-600 font-medium">
-              Recent Bounties
+            <div className="mb-2 text-[10px] uppercase tracking-widest text-emerald-700/60 font-medium">
+              Recently Viewed
             </div>
             <div className="flex flex-wrap gap-1.5">
               {recentIds.map((id) => (
@@ -95,7 +88,7 @@ export function LoadBountyPanel({
         {recentIds.length === 0 && (
           <div className="text-center py-6">
             <div className="text-3xl mb-2 opacity-30">🔍</div>
-            <p className="text-xs text-zinc-600">Create or load a bounty to get started.</p>
+            <p className="text-xs text-emerald-800/50">No bounties yet. Create one or enter an ID above.</p>
           </div>
         )}
       </CardBody>

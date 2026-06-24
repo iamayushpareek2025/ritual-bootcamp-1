@@ -35,82 +35,60 @@ export default function Home() {
         className="sticky top-0 z-50 border-b border-emerald-500/20 backdrop-blur-xl"
         style={{ background: "rgba(1,10,4,0.88)" }}
       >
-        {/* Neon bottom glow line */}
         <div className="header-glow-line" />
-
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
           <div className="flex items-center gap-4">
-            {/* Logo / Brand */}
             <div className="flex items-center gap-3">
               <div className="relative flex items-center justify-center w-10 h-10">
                 <div className="absolute inset-0 rounded-xl bg-emerald-500/25 blur-lg animate-pulse" />
                 <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-emerald-400/40 shadow-[0_0_18px_rgba(16,185,129,0.4)]">
-                  <Image
-                    src="/ritual-logo.jpg"
-                    alt="Ritual Logo"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover"
-                    priority
-                  />
+                  <Image src="/ritual-logo.jpg" alt="Ritual" width={40} height={40} className="w-full h-full object-cover" priority />
                 </div>
               </div>
               <div>
-                <h1
-                  className="text-sm font-bold leading-tight text-white"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                  AI Bounty Judge
+                <h1 className="text-sm font-bold leading-tight text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  Bounty Judge
                 </h1>
                 <p className="text-[10px] leading-tight text-emerald-400 font-medium tracking-widest uppercase animate-neon-flicker">
-                  on {ritualChain.name}
+                  Powered by Ritual
                 </p>
               </div>
             </div>
 
-            {/* Chain pill */}
             <div className="hidden sm:flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-medium bg-emerald-500/10 border border-emerald-500/25 text-emerald-300">
               <div className="dot-live" />
-              Chain {ritualChain.id}
+              Live on Chain {ritualChain.id}
             </div>
           </div>
-
           <WalletConnect />
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-        {/* Hero Section */}
+        {/* Hero */}
         <section className="mb-10 animate-fade-in-up">
           <div className="relative">
-            {/* Background glow orbs */}
             <div className="absolute -top-10 -left-10 w-72 h-36 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none animate-float" />
             <div className="absolute -top-4 right-0 w-48 h-24 bg-cyan-500/8 rounded-full blur-3xl pointer-events-none" />
 
-            {/* "Powered by" badge */}
             <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)] animate-pulse" />
               Powered by Ritual AI
             </div>
 
-            <h2
-              className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              Crowd-judged bounties,{" "}
-              <span className="text-neon-green">settled by AI.</span>
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              Post a bounty.{" "}
+              <span className="text-neon-green">Let AI pick the winner.</span>
             </h2>
             <p className="mt-3 max-w-2xl text-sm text-zinc-400 leading-relaxed">
-              Submit answers, commit a hash before the deadline, reveal your
-              answer after — and let Ritual AI rank all submissions fairly. The
-              bounty owner finalizes the winner.
+              Create a bounty, set your judging rules, and let participants submit their answers.
+              Ritual AI scores every entry and picks the best one — fair, fast, and on-chain.
             </p>
 
-            {/* Feature pills */}
             <div className="mt-5 flex flex-wrap gap-2">
               {[
-                { icon: "🔒", text: "Commit-Reveal scheme" },
-                { icon: "🤖", text: "AI-powered judging" },
+                { icon: "🔒", text: "Private submissions" },
+                { icon: "🤖", text: "AI scoring" },
                 { icon: "⛓️", text: "On-chain rewards" },
               ].map((f) => (
                 <span
@@ -125,14 +103,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* How it works */}
+        {/* Steps */}
         <section className="mb-8">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { step: "01", label: "Create", desc: "Fund a bounty with a rubric", color: "emerald" },
-              { step: "02", label: "Commit",  desc: "Submit hashed answers",      color: "teal"    },
-              { step: "03", label: "Reveal",  desc: "Reveal after deadline",      color: "cyan"    },
-              { step: "04", label: "Win",     desc: "AI judges, owner finalizes", color: "emerald" },
+              { step: "01", label: "Post",   desc: "Create a bounty with prize money",    color: "emerald" },
+              { step: "02", label: "Submit", desc: "Participants submit locked answers",   color: "teal"    },
+              { step: "03", label: "Unlock", desc: "Answers are revealed after deadline", color: "cyan"    },
+              { step: "04", label: "Win",    desc: "AI scores all answers, you pay out",  color: "emerald" },
             ].map((s) => (
               <div
                 key={s.step}
@@ -141,10 +119,7 @@ export default function Home() {
                 <div className={`text-xs font-mono font-bold mb-1 text-${s.color}-500/60 group-hover:text-${s.color}-400 transition-colors`}>
                   {s.step}
                 </div>
-                <div
-                  className="text-sm font-semibold text-white mb-0.5"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
+                <div className="text-sm font-semibold text-white mb-0.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {s.label}
                 </div>
                 <div className="text-[11px] text-zinc-500">{s.desc}</div>
@@ -153,32 +128,22 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contract not configured warning */}
         {!isContractConfigured && (
           <div className="mb-6 animate-fade-in-up">
             <Notice tone="amber">
-              No contract address configured. Copy{" "}
+              Contract not set up yet. Copy{" "}
               <code className="font-mono text-amber-200">.env.example</code> to{" "}
-              <code className="font-mono text-amber-200">.env.local</code> and set{" "}
-              <code className="font-mono text-amber-200">
-                NEXT_PUBLIC_CONTRACT_ADDRESS
-              </code>{" "}
-              to start.
+              <code className="font-mono text-amber-200">.env.local</code> and add your{" "}
+              <code className="font-mono text-amber-200">NEXT_PUBLIC_CONTRACT_ADDRESS</code> to get started.
             </Notice>
           </div>
         )}
 
-        {/* Main Dashboard */}
         <section className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           <CreateBountyForm onCreated={handleCreated} />
-          <LoadBountyPanel
-            selectedId={selectedId}
-            onSelect={setSelectedId}
-            recentIds={ids}
-          />
+          <LoadBountyPanel selectedId={selectedId} onSelect={setSelectedId} recentIds={ids} />
         </section>
 
-        {/* Selected Bounty Detail */}
         {selectedId !== null && (
           <section className="mt-6 animate-fade-in-up">
             <div className="flex items-center gap-3 mb-4">
@@ -192,38 +157,26 @@ export default function Home() {
           </section>
         )}
 
-        {/* Footer */}
         <footer className="mt-12 border-t border-emerald-500/10 pt-5">
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-600">
             <div className="flex items-center gap-2">
               <div className="dot-live" style={{ width: 6, height: 6 }} />
               {contractAddress ? (
                 <>
-                  Contract{" "}
-                  <span className="font-mono text-zinc-500">
-                    {shortenAddress(contractAddress, 6)}
-                  </span>
+                  Contract <span className="font-mono text-zinc-500">{shortenAddress(contractAddress, 6)}</span>
                 </>
               ) : (
-                "Workshop demo"
+                "Demo mode — no contract"
               )}
               <span className="text-zinc-700">·</span>
               <span className="text-emerald-600/80">{ritualChain.name}</span>
             </div>
             <div className="flex items-center gap-2.5">
               <div className="relative w-6 h-6 rounded-full overflow-hidden border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.35)]">
-                <Image
-                  src="/ayush-pfp.jpg"
-                  alt="Ayush"
-                  width={24}
-                  height={24}
-                  className="w-full h-full object-cover"
-                />
+                <Image src="/ayush-pfp.jpg" alt="Ayush" width={24} height={24} className="w-full h-full object-cover" />
               </div>
               <span className="text-zinc-500">
-                Built by{" "}
-                <span className="text-emerald-400 font-medium">Ayush</span> ·
-                Ritual Chain Workshop
+                Made by <span className="text-emerald-400 font-medium">Ayush</span> · Ritual Chain Workshop
               </span>
             </div>
           </div>

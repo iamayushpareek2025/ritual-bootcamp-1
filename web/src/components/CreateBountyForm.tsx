@@ -128,28 +128,27 @@ export function CreateBountyForm({ onCreated }: { onCreated?: (bountyId: bigint)
   return (
     <Card>
       <CardHeader
-        title="Create a bounty"
-        subtitle="Fund a reward and define how submissions will be judged."
+        title="Create a Bounty"
+        subtitle="Set a prize, write your rules, and let the best answer win."
       />
       <CardBody>
         {!isContractConfigured && (
           <Notice tone="amber">
-            Set <code className="font-mono">NEXT_PUBLIC_CONTRACT_ADDRESS</code> in your{" "}
-            <code className="font-mono">.env.local</code> to enable transactions.
+            Add your contract address in <code className="font-mono">.env.local</code> to enable transactions.
           </Notice>
         )}
 
         <form onSubmit={handleSubmit} className="mt-3 space-y-3">
-          <Field label="Title">
+          <Field label="Bounty Title">
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Best gas-optimization writeup"
+              placeholder="e.g. Best gas optimization guide"
               maxLength={200}
             />
           </Field>
 
-          <Field label="Rubric" hint="How submissions are scored. The AI judges only against this.">
+          <Field label="Judging Rules" hint="AI will score every answer based on this. Be specific.">
             <Textarea
               value={rubric}
               onChange={(e) => setRubric(e.target.value)}
@@ -158,32 +157,22 @@ export function CreateBountyForm({ onCreated }: { onCreated?: (bountyId: bigint)
             />
           </Field>
 
-          {/* Lifecycle note */}
+          {/* How it works note */}
           <div className="rounded-lg bg-emerald-500/8 px-3 py-2.5 text-xs text-emerald-300/90 ring-1 ring-inset ring-emerald-500/20 shadow-[0_0_12px_rgba(16,185,129,0.08)]">
-            <span className="font-semibold text-emerald-300">⛓️ Commit-Reveal flow:</span> Participants commit a hash before the submission
-            deadline, then reveal their answer before the reveal deadline. Only revealed answers
-            are judged — keeping submissions private until judging begins.
+            <span className="font-semibold text-emerald-300">⛓️ How this works:</span> Participants submit a locked hash of their answer before the deadline. After the deadline, they reveal their answer. Only revealed answers are scored by AI — so no one can copy others.
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <Field label="Submission deadline" hint="Commit phase closes here.">
-              <Input
-                type="datetime-local"
-                value={submissionDeadline}
-                onChange={(e) => setSubmissionDeadline(e.target.value)}
-              />
+            <Field label="Submission Deadline" hint="Answers must be locked in before this time.">
+              <Input type="datetime-local" value={submissionDeadline} onChange={(e) => setSubmissionDeadline(e.target.value)} />
             </Field>
-            <Field label="Reveal deadline" hint="Reveal phase closes here (must be after submission deadline).">
-              <Input
-                type="datetime-local"
-                value={revealDeadline}
-                onChange={(e) => setRevealDeadline(e.target.value)}
-              />
+            <Field label="Reveal Deadline" hint="Answers must be revealed between the two deadlines.">
+              <Input type="datetime-local" value={revealDeadline} onChange={(e) => setRevealDeadline(e.target.value)} />
             </Field>
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <Field label="Reward (RITUAL)" hint="Locked in the contract on create.">
+            <Field label="Prize Amount (RITUAL)" hint="This gets locked in the contract when you create the bounty.">
               <Input
                 type="number"
                 min="0"
@@ -204,20 +193,19 @@ export function CreateBountyForm({ onCreated }: { onCreated?: (bountyId: bigint)
             disabled={!isConnected || !isContractConfigured || !!validation || tx.isBusy}
             className="w-full"
           >
-            {tx.isBusy ? "Creating…" : "Create bounty"}
+            {tx.isBusy ? "Creating bounty…" : "Post Bounty"}
           </Button>
 
           {!isConnected && (
-            <p className="text-xs text-zinc-500">Connect your wallet to create a bounty.</p>
+            <p className="text-xs text-emerald-700/60">Connect your wallet to post a bounty.</p>
           )}
 
           <TxStatus state={tx.state} error={tx.error} hash={tx.hash} explorerBase={explorerBase} />
 
           {createdId !== null && (
             <Notice tone="green">
-              Bounty created with id{" "}
-              <span className="font-mono font-semibold">#{createdId.toString()}</span>. Loaded
-              below.
+              🎉 Bounty created! ID:{" "}
+              <span className="font-mono font-semibold">#{createdId.toString()}</span> — it&apos;s now live below.
             </Notice>
           )}
         </form>

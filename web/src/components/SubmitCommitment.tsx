@@ -78,47 +78,39 @@ export function SubmitCommitment({
   return (
     <Card>
       <CardHeader
-        title="Submit your answer (commit)"
-        subtitle="Only a hash is stored on-chain — your answer stays private until the reveal phase."
+        title="Submit Your Answer"
+        subtitle="Your answer stays hidden until the deadline passes."
       />
       <CardBody>
-        <Notice tone="indigo">
-          <strong>How it works:</strong> Your answer is hashed with a random salt before
-          being sent on-chain. No one can read it until after the submission deadline. Your
-          answer and salt are saved in your browser so you can reveal later.
+        <Notice tone="green">
+          <strong>Your answer is kept secret.</strong> We lock a fingerprint of it on-chain so no one can peek. After the deadline, you reveal the real answer and it gets scored.
         </Notice>
 
         <form onSubmit={handleSubmit} className="mt-3 space-y-3">
           <Field
-            label="Your answer"
-            hint="Write your best answer. It will be hidden until the reveal phase."
+            label="Your Answer"
+            hint="Type your best answer. It stays private until you reveal it."
           >
             <Textarea
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               rows={5}
-              placeholder="Write your submission here…"
+              placeholder="Write your answer here…"
             />
           </Field>
 
           {saved && (
             <Notice tone="amber">
-              ⚠️ Your answer and salt have been saved to this browser. Make sure to
-              reveal from this same browser after the submission deadline, or back up the
-              data from the Reveal panel.
+              ⚠️ Saved to this browser. Use the same browser to reveal your answer after the deadline, or copy the answer and salt from the Reveal section.
             </Notice>
           )}
 
-          <Button
-            type="submit"
-            disabled={!isConnected || !answer.trim() || tx.isBusy}
-            className="w-full"
-          >
-            {tx.isBusy ? "Committing…" : "Commit answer (hash only)"}
+          <Button type="submit" disabled={!isConnected || !answer.trim() || tx.isBusy} className="w-full">
+            {tx.isBusy ? "Locking in…" : "Lock In My Answer"}
           </Button>
 
           {!isConnected && (
-            <p className="text-xs text-zinc-500">Connect your wallet to commit.</p>
+            <p className="text-xs text-emerald-700/60">Connect your wallet to submit.</p>
           )}
 
           <TxStatus
