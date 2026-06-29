@@ -81,20 +81,5 @@ Visit [http://localhost:3000](http://localhost:3000) to view the application.
 
 - **Ritual Testnet Timestamps**: The Ritual public testnet currently uses millisecond-precision `block.timestamp` values, unlike the EVM standard of seconds. The frontend automatically detects if you are connected to Ritual Chain (ID 1979) and scales the timestamps accordingly to ensure deadlines are processed correctly by the smart contract.
 
-## Deploying to Vercel
-
-Because this repository is a **monorepo** (it contains both `hardhat` and `web` directories), you need to configure Vercel properly to build the Next.js frontend.
-
-1. **Import Project**: Go to [Vercel](https://vercel.com/new) and import your GitHub repository.
-2. **Set the Root Directory**: In the "Configure Project" screen, look for **Root Directory**. Click **Edit** and select the **`web`** folder. (This tells Vercel where the Next.js app lives).
-3. **Add Environment Variables**: Expand the "Environment Variables" section and add the following keys so the UI can connect to the Ritual Testnet:
-   - `NEXT_PUBLIC_CONTRACT_ADDRESS` = `0xYourDeployedContractAddress`
-   - `NEXT_PUBLIC_RITUAL_RPC_URL` = `https://rpc.ritualfoundation.org`
-   - `NEXT_PUBLIC_RITUAL_CHAIN_ID` = `1979`
-   - `NEXT_PUBLIC_RITUAL_EXECUTOR_ADDRESS` = `0xB42e435c4252A5a2E7440e37B609F00c61a0c91B`
-4. **Deploy**: Click the Deploy button. Vercel will automatically run `pnpm install` and `pnpm build` inside the `web` folder.
-
----
-
 ## Acknowledgments
 Built during the Ritual Chain Workshop.
