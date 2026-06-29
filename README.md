@@ -2,7 +2,7 @@
 
 A decentralized bounty platform built on the **Ritual Chain**, utilizing a **Commit-Reveal** scheme to prevent answer-copying. Participants submit hashed commitments before the deadline, and only reveal their plaintext answers once the submission window closes. After the reveal phase, an AI agent (via Ritual's Precompile infrastructure) evaluates all eligible submissions according to a custom rubric, and the bounty owner finalizes a winner.
 
-**Developers:** Cranky and Oreganoflakes
+**Developers:** Ayush & Rahul
 
 ---
 
